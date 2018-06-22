@@ -14,19 +14,26 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.js?$/,
           exclude: /node_modules/,
-          use: ['babel-loader']
+          use: [
+            {
+              loader: 'babel-loader', 
+              query: {
+                presets: ["es2015", "es2016", "react"]
+              }
+            }
+          ],
         },
         {
           test: /\.scss|.css/,
           exclude: /node_modules/,
           use: [
-            "style-loader", // creates style nodes from JS strings 
-            "css-loader", // translates CSS into CommonJS
-            "sass-loader", // compiles Sass to CSS
-            "postcss-loader"
-          ],
+            {loader: "style-loader"}, // creates style nodes from JS strings 
+            {loader: "css-loader"}, // translates CSS into CommonJS
+            {loader: "sass-loader"}, // compiles Sass to CSS
+            {loader: "postcss-loader", options: { importLoaders: 1 }}
+          ]
         },
         {
           test: /\.html$/,
@@ -64,6 +71,7 @@ module.exports = {
       new UglifyJsPlugin(),
     ],
     devServer: {
+      historyApiFallback: true,
       contentBase: './client',
       hot: true
     }
