@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { TodoList } from './components/todosList/index';
+import { addTodo } from '../redux/actions/index';
 
 const todosData = [
     {
@@ -23,44 +26,34 @@ const todosData = [
     }
 ];
 
-const drawViz = () => {
-    console.log('Draw Viz');
-}
-class TodoItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = props.todo;
-        this.toggleIsCompleted = this.toggleIsCompleted.bind(this);
-    };
-    toggleIsCompleted() {
-        this.setState({isCompleted: !this.state.isCompleted});
-        drawViz();
+const mapStateToProps = props => {
+    return {
+      todos: props.todos.todos
     }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+      addTodo: todo => dispatch(addTodo(todo))
+    }
+}
+
+class Todos extends React.Component {
     render() {
+        debugger;
+        todosData.forEach((todo) => {
+            this.props.addTodo(todo)
+        })
         return(
-            <li onClick={this.toggleIsCompleted}
-            className={this.state.isCompleted ? 'todo-completed': null}>{this.state.text}</li> 
-        )
+            <div className="todos__main-container">
+                <h3>My Todo List</h3>
+                <TodoList todos={this.props.todos}/>
+            </div>
+        )   
     }
 }
 
-const TodoList = () => {
-    return (
-        <div className="todos__list-container">
-            <ul>
-                {todosData.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
-            </ul>
-        </div>
-    )
-}
-
-const Todos = () => {
-    return (
-        <div className="todos__main-container">
-            <h3>My Todo List</h3>
-            <TodoList />
-        </div>
-    )
-}
-
-module.exports = {  Todos  };
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Todos);

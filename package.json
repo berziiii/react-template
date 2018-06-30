@@ -11,7 +11,9 @@
   "license": "ISC",
   "babel": {
     "presets": [
-      ["es2016"],
+      [
+        "es2016"
+      ],
       "env",
       "react",
       "stage-2"
@@ -46,7 +48,9 @@
     "postcss-scss": "^1.0.5",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^4.3.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "sugarss": "^1.0.1",
