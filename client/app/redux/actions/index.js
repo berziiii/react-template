@@ -3,10 +3,20 @@ let currentTodoId = 0;
 const todoId = () => {
     return currentTodoId+=1;
 } 
+
+const loadTodos = (todos) => {
+    return {
+        type: 'LOAD_TODOS',
+        todos: todos
+    }
+}
+
 const addTodo = (todo) => {
     return {
         type: 'ADD_TODO',
-        todo: todo
+        id: todoId(),
+        text: todo.text,
+        isCompleted: false
     }
 }
 
@@ -17,4 +27,8 @@ const toggleTodo = (todo) => {
     }
 }
 
-module.exports = { addTodo, toggleTodo }
+module.exports = {
+    loadTodos,
+    addTodo,
+    toggleTodo
+}

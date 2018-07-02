@@ -1,8 +1,8 @@
 import React from 'react';
+import { loadTodos } from '../redux/actions/';
 import { connect } from 'react-redux';
-import { TodoList } from './components/todosList/index';
-import { addTodo } from '../redux/actions/index';
-
+import TodoList from './components/TodoList';
+// import { addTodo } from '../redux/actions/index';
 const todosData = [
     {
         id: 1,
@@ -26,31 +26,35 @@ const todosData = [
     }
 ];
 
-const mapStateToProps = props => {
+const mapStateToProps = state => {
     return {
-      todos: props.todos.todos
+        todos: state.todos
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-      addTodo: todo => dispatch(addTodo(todo))
+        loadTodos: (data) => { 
+            dispatch(loadTodos(data)) 
+        }
     }
 }
 
-class Todos extends React.Component {
-    render() {
-        debugger;
-        todosData.forEach((todo) => {
-            this.props.addTodo(todo)
-        })
-        return(
+const Todos = (props) => {
+    if (props.todos.length === 0) {
+        props.loadTodos(todosData)
+        return (
             <div className="todos__main-container">
-                <h3>My Todo List</h3>
-                <TodoList todos={this.props.todos}/>
+                <h3>Loading Todos...</h3>
             </div>
-        )   
+        )
     }
+    return(
+        <div className="todos__main-container">
+            <h3>My Todo List</h3>
+            <TodoList />
+        </div>
+    )   
 }
 
 export default connect(
