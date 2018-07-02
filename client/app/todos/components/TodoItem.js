@@ -9,6 +9,7 @@ const TodoItem = (props) => {
                 </div>
             </div>
             <div className={`todo__text ${props.todo.isCompleted ? 'todo__completed': null}`}>{props.todo.text}</div>
+            {props.todo.isCompleted ? <div className={'todo__remove-todo'} onClick={props.removeTodo}>Remove</div>: null }
         </div> 
     )
 }

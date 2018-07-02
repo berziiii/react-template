@@ -22,6 +22,7 @@
 }
 
 .todo__item {
+    position: relative;
     border-top: 1px dotted $grey;
     display: flex;
     align-content: stretch;
@@ -34,6 +35,9 @@
     width: 100px;
     height: auto;
     text-align: center;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .todo__toggle-circle, .todo__toggle-circle-complete  {
@@ -84,4 +88,20 @@ input.todo__add-input {
     outline: none;
     border: transparent;
     padding-left: 30px;
+}
+
+.todo__remove-todo {
+    position: absolute;
+    justify-content: center;
+    right: 5px;
+    top: 30%;
+    padding: 5px 8px;
+    background: $red;
+    color: $white;
+    border: .5px solid $black;
+    border-radius: 3px;
+    z-index: 10px;
+    &:hover {
+        cursor: pointer;
+    }
 }

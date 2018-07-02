@@ -1,48 +1,51 @@
 import React from 'react';
-import { loadTodos } from '../redux/actions/';
-import { connect } from 'react-redux';
+import * as Actions from '../redux/actions/';
 import TodoList from './components/TodoList';
-// import { addTodo } from '../redux/actions/index';
-const todosData = [
-    {
-        id: 1,
-        text: 'Clean the house',
-        isCompleted: false,
-    },
-    {
-        id: 2,
-        text: 'Wash the Car',
-        isCompleted: false,
-    },
-    {
-        id: 3,
-        text: 'Take out the Trash',
-        isCompleted: false,
-    },
-    {
-        id: 4,
-        text: 'Write a React App',
-        isCompleted: false,
-    }
-];
+import { getTodos } from './api';
+import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-    return {
-        todos: state.todos
-    }
+const connectToState = state => ({
+    state
+})
+
+const registerActions = dispatch => ({
+    loadTodos: (data) => { 
+        dispatch(Actions.loadTodos(data)) 
+    },
+    retrieveTodos: () => {
+        dispatch(Actions.retrieveTodos())
+    },
+    receivedTodos: (data) => {
+        dispatch(Actions.receivedTodos(data))
+    },
+    hasError: () => {
+        dispatch(Action.hasError())
+    },
+})
+
+const getTodosData = (props) => {
+    getTodos()
+    .then((res) => {
+        props.receivedTodos(res);
+    })
+    .catch((err) => {
+        props.hasError();
+    })
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        loadTodos: (data) => { 
-            dispatch(loadTodos(data)) 
-        }
+const getTodosIfNeeded = (props) => {
+    if (props.state.isFetching) {
+        return true;
+    } else if (props.state.todos.length === 0) {
+        getTodosData(props);
+        props.retrieveTodos();
+        return true;
     }
+    return false;
 }
 
 const Todos = (props) => {
-    if (props.todos.length === 0) {
-        props.loadTodos(todosData)
+    if (getTodosIfNeeded(props)) {
         return (
             <div className="todos__main-container">
                 <h3>Loading Todos...</h3>
@@ -58,6 +61,6 @@ const Todos = (props) => {
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+    connectToState,
+    registerActions,
 )(Todos);
