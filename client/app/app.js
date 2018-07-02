@@ -29,7 +29,6 @@ const routes = [
 ]
 
 
-
 // MAIN APP COMPONENTS
 const Navigation = () => {
     return(
@@ -39,17 +38,6 @@ const Navigation = () => {
         </div>
     )
 }
-// class Navigation extends React.Component {
-//     render() {
-//         return(
-//             <div className="app__navigation-container">
-//                 <NavLink exact to="/" activeClassName='active'>Home</NavLink>
-//                 <NavLink exact to="/todos" activeClassName='active'>Todo List</NavLink>
-//             </div>
-//         )
-//     }
-// }
-
 const Header = () => {
     return(
         <header className="app__header-container">
@@ -58,31 +46,12 @@ const Header = () => {
     )
 }
 
-// class Header extends React.Component {
-//     render() {
-//         return(
-//             <header className="app__header-container">
-//                 <Navigation />
-//             </header>
-//         )
-//     }
-// }
-
 const Footer = () => {
     return(
         <footer className="app__footer-container">
         </footer>
     )
 }
-
-// class Footer extends React.Component {
-//     render() {
-//         return(
-//             <footer className="app__footer-container">
-//             </footer>
-//         )
-//     }
-// }
 
 const App = () => {
     return(
@@ -97,21 +66,6 @@ const App = () => {
         </main>
     )
 }
-// class App extends React.Component {
-    // render() {
-    //     return(
-    //         <main className="app__main-container">
-    //             <Header />
-    //             <div className="app__view-container">
-    //                 <Switch>
-    //                     {routes.map((route, index) => <Route key={index} exact={route.exact} path={route.path} component={route.component}/> )}
-    //                 </Switch>
-    //             </div>
-    //             <Footer />
-    //         </main>
-    //     )
-    // }
-// }
 
 const store = createStore(todoApp);
 

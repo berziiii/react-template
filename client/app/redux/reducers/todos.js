@@ -1,27 +1,20 @@
-
-
-// import {
-//     addTodo,
-//     toggleTodo,
-//     loadTodos
-// } from '../actions/index';
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 
 const initialState = {
-    todos: [],
+    items: [],
     isFetching: false,
     hasError: false
 }
 const todos = (state = initialState, action) => {
     switch (action.type) {
         case 'LOAD_TODOS':
-            return Object.assign({}, state, {
-                todos: action.todos
+            return Object.assign({}, state.items, {
+                items: action.items
             });
         case 'ADD_TODO':
-            return Object.assign({}, state, {
-                todos: [
-                    ...state.todos,
+            return Object.assign({}, state.items, {
+                items: [
+                    ...state.items,
                     {
                         id: action.id,
                         text: action.text,
@@ -30,8 +23,8 @@ const todos = (state = initialState, action) => {
                 ]
             });
         case 'TOGGLE_TODO':
-            return Object.assign({}, state, {
-                todos: state.todos.map((todo) => {
+            return Object.assign({}, state.items, {
+                items: state.items.map((todo) => {
                     if (todo.id === action.id) {
                         return Object.assign({}, todo, {
                             isCompleted: !todo.isCompleted
@@ -41,33 +34,31 @@ const todos = (state = initialState, action) => {
                 })
             });
         case 'RETRIEVE_TODOS':
-            return Object.assign({}, state, {
+            return Object.assign({}, state.items , {
                 isFetching: true,
                 hasError: false,
             });
         case 'RECEIVED_TODOS':
-            return Object.assign({}, state, {
-                todos: action.todos,
+            return Object.assign({}, state.items, {
+                items: action.items,
                 isFetching: false,
                 hasError: false,
             });
         case 'REMOVE_TODO':
-            return Object.assign({}, state, {
-                todos: state.todos.filter((todo) => {
+            return Object.assign({}, state.items, {
+                items: state.items.filter((todo) => {
                     if (todo.id != action.id) {
                         return todo;
                     }
                 })
             });
-        case 'HAS_ERROR':
-            return Object.assign({}, state, action.state);
         default:
             return state;      
     }
 }
 
-// const todoApp = combineReducers({
-//     todos
-// })
+const todoApp = combineReducers({
+    todos
+})
 
-export default todos
+export default todoApp;

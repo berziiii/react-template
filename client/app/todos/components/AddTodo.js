@@ -5,17 +5,11 @@ import { connect } from 'react-redux';
 
 
 const connectToState = (state) => ({
-    state: state,
-    prevState: state
+    state
 })
 
 const registerActions = (dispatch) => ({
-    addTodo: (text) => {
-        dispatch(Actions.addTodo(text)); 
-    },
-    hasError: (state) => {
-        dispatch(Actions.hasError(state));
-    }
+    addTodo: (text) => dispatch(Actions.addTodo(text))
 })
 
 const AddTodoToDatabase = (props, e) => {
@@ -32,7 +26,7 @@ const AddTodoToDatabase = (props, e) => {
             props.addTodo(res);
         })
         .catch((err)=> {
-            props.hasError(props.prevState);
+            console.error(err);
         })
     }
 }

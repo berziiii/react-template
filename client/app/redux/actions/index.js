@@ -1,9 +1,3 @@
-export const loadTodos = (todos) => {
-    return {
-        type: 'LOAD_TODOS',
-        todos: todos
-    }
-}
 
 export const addTodo = (todo) => {
     return {
@@ -26,7 +20,7 @@ export const retrieveTodos = () => {
         type: 'RETRIEVE_TODOS',
         isFetching: true,
         hasError: false,
-        todos: [],
+        items: [],
     }
 }
 
@@ -35,7 +29,7 @@ export const receivedTodos = (todos) => {
         type: 'RECEIVED_TODOS',
         isFetching: false,
         hasError: false,
-        todos: todos,
+        items: todos,
     }
 }
 
@@ -45,15 +39,6 @@ export const removeTodo = (todo) => {
         isFetching: false,
         hasError: false,
         id: todo.id
-    }
-}
-
-export const hasError = (state) => {
-    return {
-        type: 'HAS_ERROR',
-        isFetching: false,
-        hasError: true,
-        state
     }
 }
 

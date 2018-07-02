@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Actions from '../redux/actions/';
 import TodoList from './components/TodoList';
-import { getTodos } from './api';
+import * as API from './api';
 import { connect } from 'react-redux';
 
 const connectToState = state => ({
@@ -9,34 +9,28 @@ const connectToState = state => ({
 })
 
 const registerActions = dispatch => ({
-    loadTodos: (data) => { 
-        dispatch(Actions.loadTodos(data)) 
-    },
     retrieveTodos: () => {
         dispatch(Actions.retrieveTodos())
     },
     receivedTodos: (data) => {
         dispatch(Actions.receivedTodos(data))
     },
-    hasError: () => {
-        dispatch(Action.hasError())
-    },
 })
 
 const getTodosData = (props) => {
-    getTodos()
+    API.getTodos()
     .then((res) => {
         props.receivedTodos(res);
     })
     .catch((err) => {
-        props.hasError();
+        console.error(err);
     })
 }
 
 const getTodosIfNeeded = (props) => {
-    if (props.state.isFetching) {
+    if (props.state.todos.isFetching) {
         return true;
-    } else if (props.state.todos.length === 0) {
+    } else if (props.state.todos.items.length === 0) {
         getTodosData(props);
         props.retrieveTodos();
         return true;
