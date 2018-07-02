@@ -1,19 +1,25 @@
-// import React from 'react';
+import React from 'react';
+import Todo from './TodoItem';
+import AddTodo from './AddTodo';
 import { connect } from 'react-redux';
-import Todos from './Todos';
 import { toggleTodo } from '../../redux/actions/';
-// import { AddTodo } from '../AddTodo/index';
 
-const mapStateToProps = state => ({
+const connectToState = state => ({
     todos: state.todos,
 })
 
-const mapDispatchToProps = dispatch => ({
+const registerActions = (dispatch) => ({
     toggleTodo: todo => dispatch(toggleTodo(todo))
 })
 
-// export default TodoList;
+export const TodoList = (props) => (
+    <div className="todos__list-container">
+        { props.todos.map((todo, i) => <Todo key={i} todo={todo} toggleIsCompleted={() => props.toggleTodo(todo)} />)}
+        <AddTodo />
+    </div>
+)
+
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Todos)
+    connectToState,
+    registerActions
+)(TodoList)

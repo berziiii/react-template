@@ -71,10 +71,13 @@
     border-bottom: 1px dotted $grey;
     display: flex;
     align-content: stretch;
-
 }
 
-input.todo_add-input {
+form.todo__add-form {
+    width: 100%;
+}
+
+input.todo__add-input {
     width: 100%;
     height: 50px;
     font-size: 2em;

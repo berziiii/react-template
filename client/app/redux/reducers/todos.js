@@ -19,9 +19,9 @@ const todos = (state = initialState, action) => {
                 todos: [
                     ...state.todos,
                     {
-                        text: action.todo.text,
-                        id: action.todo.id,
-                        isCompleted: action.todo.isCompleted,
+                        text: action.text,
+                        id: state.todos.length+1,
+                        isCompleted: action.isCompleted,
                     }
                 ]
             });

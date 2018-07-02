@@ -1,9 +1,3 @@
-let currentTodoId = 0;
-
-const todoId = () => {
-    return currentTodoId+=1;
-} 
-
 const loadTodos = (todos) => {
     return {
         type: 'LOAD_TODOS',
@@ -11,11 +5,10 @@ const loadTodos = (todos) => {
     }
 }
 
-const addTodo = (todo) => {
+const addTodo = (text) => {
     return {
         type: 'ADD_TODO',
-        id: todoId(),
-        text: todo.text,
+        text: text,
         isCompleted: false
     }
 }
