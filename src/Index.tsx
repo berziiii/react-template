@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./web/app/App";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import {BrowserRouter} from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './web/app/App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
@@ -21,14 +21,14 @@ serviceWorkerRegistration.register({
     const waitingServiceWorker = registration.waiting;
 
     if (waitingServiceWorker) {
-      waitingServiceWorker.addEventListener("statechange", event => {
+      waitingServiceWorker.addEventListener('statechange', event => {
         const serviceWorker: ServiceWorker | null = event.target as ServiceWorker;
-        if (serviceWorker?.state === "activated") {
+        if (serviceWorker?.state === 'activated') {
           window.location.reload();
         }
       });
 
-      waitingServiceWorker.postMessage({type: "SKIP_WAITING"});
+      waitingServiceWorker.postMessage({ type: 'SKIP_WAITING' });
     }
   },
 });
