@@ -1,0 +1,6 @@
+.idea/
+build
+node_modules/
+src/**/__snapshots__/
+package.json
+package-lock.json
