@@ -12,8 +12,8 @@ process.on('unhandledRejection', err => {
 
 // Ensure environment variables are read.
 require('../config/env');
-
 const { execSync } = require('child_process');
+const jest = require('jest'); // eslint-disable-line
 
 const argv = process.argv.slice(2);
 

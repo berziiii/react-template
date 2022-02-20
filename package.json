@@ -103,6 +103,6 @@
     "npm:clean:deep": "rm -rf node_modules package-lock.json && npm cache clean --force && npm install -g node-sass && npm rebuild && npm install --loglevel silly",
     "postinstall": "husky install",
     "start": "ts-node scripts/start.js",
-    "test": "rm -rf ./node_modules/.cache/jest && CI=true ts-node --unhandled-rejections=none scripts/test.js --detectOpenHandles --no-cache --runInBand --colors"
+    "test": "rm -rf ./node_modules/.cache/jest && CI=true node --unhandled-rejections=none scripts/test.js --detectOpenHandles --no-cache --runInBand --colors --passWithNoTests"
   }
 }
