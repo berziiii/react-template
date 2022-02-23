@@ -1,11 +1,17 @@
 import React from 'react';
-import { JssProvider, useCssReset, useTheme } from '@groma/library';
+import { JssProvider, useCssReset, useTheme, Button } from '@groma/library';
 import { Routes, Route, Link } from 'react-router-dom';
 import { getAppStyles } from './styles/App.styles';
 
 const Home = () => {
   const styles = getAppStyles(useTheme());
-  return <h1 className={styles.title}> Home Page </h1>;
+
+  return (
+    <>
+      <h1 className={styles.title}> Home Page </h1>
+      <Button testId="testingId1">Testing Button</Button>
+    </>
+  );
 };
 
 const About = () => {
