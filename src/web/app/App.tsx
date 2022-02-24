@@ -26,9 +26,13 @@ const App = () => {
   return (
     <JssProvider>
       <div className={styles.mainContainer}>
-        <header>
-          <Link to="/home">Home</Link>
-          <Link to="/about">About</Link>
+        <header className={styles.header}>
+          <Link to="/home" className={styles.navItem}>
+            Home
+          </Link>
+          <Link to="/about" className={styles.navItem}>
+            About
+          </Link>
         </header>
 
         <Routes>

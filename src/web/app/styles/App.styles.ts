@@ -5,7 +5,7 @@ export const getAppStyles = (theme: GlobalThemeInterface) => {
     {
       mainContainer: {
         alignItems: 'center',
-        backgroundColor: theme.colors.primaryBackground,
+        backgroundColor: theme.colors.$primaryBackground,
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
@@ -15,7 +15,15 @@ export const getAppStyles = (theme: GlobalThemeInterface) => {
         width: '100%',
       },
       title: {
-        fontSize: '40px',
+        ...theme.text.$titleLarge,
+      },
+      header: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      navItem: {
+        ...theme.variants.links.navLarge,
       },
     },
     { name: 'App' }
